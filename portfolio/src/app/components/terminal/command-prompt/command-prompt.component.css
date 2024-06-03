@@ -1,0 +1,32 @@
+#prompt-container {
+  width: 100%;
+  color: #55FF55;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+}
+
+#primaryPromptString {
+  width: fit-content;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.input-area {
+  border: none;
+  font-size: 1.1rem;
+  background-color: rgba(1,22,39,255);
+  caret-color: white;
+  caret-shape: block;
+  color: white;
+  font-family: "Ubuntu Mono", monospace;
+  width: 100%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.input-area:focus {
+  outline: none;
+  border-color: rgba(1, 22, 39, 255);
+  box-shadow: none;
+}

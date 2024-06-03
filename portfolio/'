@@ -1,8 +1,7 @@
-#app-container {
+#container {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: flexbox;
   align-items: center;
   justify-content: center;
-  background-color: rgba(1,22,39,255);
 }
