@@ -12,4 +12,5 @@ import { TerminalComponent } from './components/terminal/terminal.component';
 
 export class AppComponent {
   title = 'portfolio';
+  primaryPromptString: string = "root@gustavs-portfolio: $";
 }

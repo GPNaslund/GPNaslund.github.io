@@ -1,6 +1,5 @@
 #prompt-container {
   width: 100%;
-  color: #55FF55;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.5rem;

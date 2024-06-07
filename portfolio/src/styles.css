@@ -1,3 +1,27 @@
 body {
   margin: 0px;
 }
+
+.red {
+  color: #f5084f;
+}
+
+.orange {
+  color: #fec303;
+}
+
+.blue {
+  color: #149bda;
+}
+
+.yellow {
+  color: #fce26e;
+}
+
+.aqua {
+  color: aqua;
+}
+
+.green {
+  color: #64f105;
+}

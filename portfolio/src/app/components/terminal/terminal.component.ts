@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-import { CommandPromptComponent } from './command-prompt/command-prompt.component';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CommandLinesComponent } from './command-lines/command-lines.component';
 
 @Component({
   selector: 'app-terminal',
   standalone: true,
-  imports: [CommandPromptComponent],
+  imports: [CommonModule, CommandLinesComponent],
   templateUrl: './terminal.component.html',
   styleUrl: './terminal.component.css'
 })
 
 
 export class TerminalComponent {
-  primaryPromptString: string = "root@gustavs-portfolio: $ "
+  @Input() primaryPromptString: string = "";
+
 }
