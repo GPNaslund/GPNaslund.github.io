@@ -3,6 +3,8 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 #primaryPromptString {
@@ -28,4 +30,17 @@
   outline: none;
   border-color: rgba(1, 22, 39, 255);
   box-shadow: none;
+}
+
+@media (max-width: 800px) {
+  #primaryPromptString {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 0px;
+  }
+
+  .input-area {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
 }
