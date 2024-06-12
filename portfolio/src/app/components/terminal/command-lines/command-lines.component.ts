@@ -5,6 +5,7 @@ import { InvalidInputComponent } from '../invalid-input/invalid-input.component'
 import { HelpComponent } from '../help/help.component';
 import { SkillsComponent } from '../skills/skills.component';
 import { ContactComponent } from '../contact/contact.component';
+import { SnakeComponent } from '../../snake/snake.component';
 
 @Component({
   selector: 'app-command-lines',
@@ -56,6 +57,9 @@ export class CommandLinesComponent implements AfterViewInit {
         window.open("https://www.linkedin.com/in/gpnaslund", "_blank")?.focus();
         this.createCommandPrompt();
         break;
+      case "snake":
+        this.createSnakeComponent();
+        break;
       default:
         this.createInvalidInputComponent();
         break;
@@ -104,6 +108,15 @@ export class CommandLinesComponent implements AfterViewInit {
     this.commandLines.createComponent(ContactComponent);
     this.createCommandPrompt();
     this.cdr.detectChanges();
+  }
+
+  private createSnakeComponent() {
+    const snake = this.commandLines.createComponent(SnakeComponent);
+    snake.instance.width = this.commandLines.element.nativeElement.parentElement.offsetWidth;
+    snake.instance.height = this.commandLines.element.nativeElement.parentElement.offsetHeight;
+    snake.instance.newGameOver.subscribe(() => {
+      this.createCommandPrompt();
+    });
   }
 
 }

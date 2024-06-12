@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { GameArea } from './model/game-area';
 import { Snake } from './model/snake';
 import { Food } from './model/food';
@@ -12,8 +12,8 @@ import { Food } from './model/food';
 })
 
 export class SnakeComponent implements AfterViewInit {
-  private height!: number;
-  private width!: number;
+  @Input() height!: number;
+  @Input() width!: number;
   @ViewChild("canvasRef", { static: false }) canvas!: ElementRef;
   private ctx!: CanvasRenderingContext2D;
   private gameArea!: GameArea;
@@ -23,15 +23,16 @@ export class SnakeComponent implements AfterViewInit {
   private snakeVelocityY: number = 0;
   private wallSize!: number;
   private snakeSize!: number;
-  private hasTurned: boolean = false;
+  @Output() newGameOver: EventEmitter<void> = new EventEmitter<void>();
+  private score: number = 0;
 
   ngAfterViewInit(): void {
     this.ctx = this.canvas.nativeElement.getContext("2d");
     this.setSizes();
 
     this.gameArea = new GameArea(this.width, this.height, this.wallSize);
-    this.snake = new Snake(150, 150, this.snakeSize);
-    this.food = new Food(250, 250, this.snakeSize);
+    this.snake = new Snake(this.width / 2, this.height / 2, this.snakeSize);
+    this.addNewFood();
 
     window.requestAnimationFrame(this.gameLoop);
 
@@ -63,17 +64,17 @@ export class SnakeComponent implements AfterViewInit {
   }
 
   setSizes() {
-    const parentElement = this.canvas.nativeElement.parentElement!;
-    this.width = parentElement.clientWidth;
-    this.height = parentElement.clientHeight;
-    this.canvas.nativeElement.width = this.width;
-    this.canvas.nativeElement.height = this.height;
-
     this.wallSize = 0.008 * Math.max(this.height, this.width);
     this.snakeSize = 0.02 * Math.max(this.height, this.width);
   }
 
-  handleFoodEaten() {
+  private handleFoodEaten() {
+    this.addNewFood();
+    this.snake.addBodyPart(true);
+    this.score = this.score += 10;
+  }
+
+  private addNewFood() {
     let randomX = Math.floor(Math.random() * this.width);
     let randomY = Math.floor(Math.random() * this.height);
     if (randomX < this.width * 0.1) {
@@ -93,19 +94,19 @@ export class SnakeComponent implements AfterViewInit {
     }
 
     this.food = new Food(randomX, randomY, this.snakeSize);
-    this.snake.addBodyPart(true);
   }
 
 
 
-
-  gameLoop = () => {
+  private gameLoop = () => {
     this.gameArea.draw(this.ctx);
     this.snake.move(this.snakeVelocityX, this.snakeVelocityY);
     this.snake.draw(this.ctx);
     this.food.draw(this.ctx);
 
     if (this.gameArea.isColliding(this.snake.getSnakeHeadX(), this.snake.getSnakeHeadY())) {
+      this.handleGameOver();
+      this.newGameOver.emit();
       return;
     }
 
@@ -114,10 +115,20 @@ export class SnakeComponent implements AfterViewInit {
     }
 
     if (this.snake.isColliding(this.snake.getSnakeHeadX(), this.snake.getSnakeHeadY())) {
+      this.handleGameOver();
+      this.newGameOver.emit();
       return;
     }
 
     window.requestAnimationFrame(this.gameLoop);
+  }
+
+  private handleGameOver() {
+    this.ctx.textBaseline = 'middle';
+    this.ctx.textAlign = 'center';
+
+    this.ctx.fillText("GAME OVER", this.width / 2, this.height / 2);
+    this.ctx.fillText("YOUR SCORE: " + this.score, this.width / 2, this.height / 2 + 20);
   }
 
 
