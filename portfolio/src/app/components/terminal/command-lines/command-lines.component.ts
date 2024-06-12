@@ -1,11 +1,10 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, Input, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import { CommandPromptComponent } from '../command-prompt/command-prompt.component';
 import { AboutComponent } from '../about/about.component';
 import { InvalidInputComponent } from '../invalid-input/invalid-input.component';
 import { HelpComponent } from '../help/help.component';
 import { SkillsComponent } from '../skills/skills.component';
 import { ContactComponent } from '../contact/contact.component';
-import { SnakeComponent } from '../../snake/snake.component';
 
 @Component({
   selector: 'app-command-lines',
@@ -19,6 +18,7 @@ export class CommandLinesComponent implements AfterViewInit {
   primaryPromptString: string = "root@gustavs-portfolio: $";
   currentCmdPrompt!: ComponentRef<CommandPromptComponent>
   @ViewChild("commandLines", { read: ViewContainerRef, static: true }) commandLines!: ViewContainerRef;
+  @Output() newSnakeCommand: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -111,12 +111,7 @@ export class CommandLinesComponent implements AfterViewInit {
   }
 
   private createSnakeComponent() {
-    const snake = this.commandLines.createComponent(SnakeComponent);
-    snake.instance.width = this.commandLines.element.nativeElement.parentElement.offsetWidth;
-    snake.instance.height = this.commandLines.element.nativeElement.parentElement.offsetHeight;
-    snake.instance.newGameOver.subscribe(() => {
-      this.createCommandPrompt();
-    });
+
   }
 
 }

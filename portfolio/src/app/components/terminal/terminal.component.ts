@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommandLinesComponent } from './command-lines/command-lines.component';
 
@@ -12,6 +12,5 @@ import { CommandLinesComponent } from './command-lines/command-lines.component';
 
 
 export class TerminalComponent {
-  @Input() primaryPromptString: string = "";
-
+  @Output() newSnakeCommand: EventEmitter<void> = new EventEmitter<void>();
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TerminalComponent } from './components/terminal/terminal.component';
 
@@ -12,4 +12,5 @@ import { TerminalComponent } from './components/terminal/terminal.component';
 
 export class AppComponent {
   title = 'portfolio';
+
 }
