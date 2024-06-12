@@ -54,6 +54,39 @@ export class SnakeComponent implements AfterViewInit {
         this.snakeVelocityY = 0;
       }
     })
+
+    window.addEventListener("touchstart", (event) => {
+      const touchX = event.touches.item(0)?.pageX;
+      const touchY = event.touches.item(0)?.pageY;
+      if (touchX != undefined && touchY != undefined) {
+        const xDeviation = Math.abs(touchX - this.width / 2);
+        const yDeviation = Math.abs(touchY - this.height / 2);
+
+        if (xDeviation > yDeviation) {
+          if (touchX > this.width / 2 && this.snakeVelocityX != -3) {
+            this.snakeVelocityX = 3;
+            this.snakeVelocityY = 0;
+          }
+          if (touchX < this.width / 2 && this.snakeVelocityX != 3) {
+            this.snakeVelocityX = -3;
+            this.snakeVelocityY = 0;
+          }
+        }
+
+        if (yDeviation > xDeviation) {
+          if (touchY > this.height / 2 && this.snakeVelocityY != 3) {
+            this.snakeVelocityY = -3;
+            this.snakeVelocityX = 0;
+          }
+          if (touchY < this.height / 2 && this.snakeVelocityY != -3) {
+            this.snakeVelocityY = 3;
+            this.snakeVelocityX = 0;
+
+          }
+        }
+
+      }
+    })
   }
 
   @HostListener("window:resize", ["$event"])
@@ -130,6 +163,5 @@ export class SnakeComponent implements AfterViewInit {
     this.ctx.fillText("GAME OVER", this.width / 2, this.height / 2);
     this.ctx.fillText("YOUR SCORE: " + this.score, this.width / 2, this.height / 2 + 20);
   }
-
 
 }
