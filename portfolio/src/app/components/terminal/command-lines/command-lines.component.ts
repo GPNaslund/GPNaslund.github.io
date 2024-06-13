@@ -18,7 +18,6 @@ export class CommandLinesComponent implements AfterViewInit {
   primaryPromptString: string = "root@gustavs-portfolio: $";
   currentCmdPrompt!: ComponentRef<CommandPromptComponent>
   @ViewChild("commandLines", { read: ViewContainerRef, static: true }) commandLines!: ViewContainerRef;
-  @Output() newSnakeCommand: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -56,9 +55,6 @@ export class CommandLinesComponent implements AfterViewInit {
       case "linkedin":
         window.open("https://www.linkedin.com/in/gpnaslund", "_blank")?.focus();
         this.createCommandPrompt();
-        break;
-      case "snake":
-        this.createSnakeComponent();
         break;
       default:
         this.createInvalidInputComponent();
@@ -109,9 +105,4 @@ export class CommandLinesComponent implements AfterViewInit {
     this.createCommandPrompt();
     this.cdr.detectChanges();
   }
-
-  private createSnakeComponent() {
-
-  }
-
 }

@@ -12,5 +12,4 @@ import { CommandLinesComponent } from './command-lines/command-lines.component';
 
 
 export class TerminalComponent {
-  @Output() newSnakeCommand: EventEmitter<void> = new EventEmitter<void>();
 }
