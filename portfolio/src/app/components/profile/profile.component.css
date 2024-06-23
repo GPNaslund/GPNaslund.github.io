@@ -1,0 +1,21 @@
+#mainContainer {
+  margin-top: 2rem;
+  border-bottom: 1px solid white;
+  padding-bottom: 2rem;
+}
+
+#description {
+  padding: 1.5rem;
+  border-left: 1px solid white;
+}
+
+#profilePicture {
+  width: 30%;
+}
+
+#imgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

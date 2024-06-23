@@ -1,0 +1,34 @@
+#mainContainer {
+  margin-top: 2rem;
+}
+
+#skillsContainer {
+  padding-bottom: 1rem;
+  background-image: linear-gradient(#ccc, #ccc);
+  background-size: 60% 1px;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+}
+
+#educationContainer {
+  margin-top: 2rem;
+}
+
+li {
+  list-style-type: disc;
+}
+
+.educationInfo {
+  margin-top: -0.75rem;
+}
+
+#projectsContainer {
+  padding: 1.5rem;
+  border-left: 1px solid white;
+}
+
+a {
+  font-size: inherit;
+  color: inherit;
+  text-decoration: inherit;
+}
