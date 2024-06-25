@@ -10,6 +10,12 @@
   background-repeat: no-repeat;
 }
 
+@media (prefers-color-scheme: light) {
+  #skillsContainer {
+    background-image: linear-gradient(#000, #000);
+  }
+}
+
 #educationContainer {
   margin-top: 2rem;
 }
@@ -24,7 +30,7 @@ li {
 
 #projectsContainer {
   padding: 1.5rem;
-  border-left: 1px solid white;
+  border-left: 1px solid light-dark(black, white);
 }
 
 a {

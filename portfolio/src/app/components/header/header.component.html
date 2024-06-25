@@ -6,19 +6,35 @@
   </div>
   <div id="contact-container">
     <div class="contact-info">
+      @if (isDarkMode) {
       <img src="assets/phoneWhite.svg">
+      } @else {
+      <img src="assets/phoneBlack.svg">
+      }
       <p><a href="tel:+46723055301">+46-723055301</a></p>
     </div>
     <div class="contact-info">
+      @if (isDarkMode) {
       <img src="assets/emailWhite.svg">
+      } @else {
+      <img src="assets/emailBlack.svg">
+      }
       <p><a href="mailto:gpnaslund@gmail.com">gpnaslund&#64;gmail.com</a></p>
     </div>
     <div class="contact-info">
+      @if (isDarkMode) {
       <img src="assets/locationWhite.svg">
+      } @else {
+      <img src="assets/locationBlack.svg">
+      }
       <p>Stockholm</p>
     </div>
     <div class="contact-info">
+      @if (isDarkMode) {
       <img src="assets/websiteWhite.svg">
+      } @else {
+      <img src="assets/websiteBlack.svg">
+      }
       <p><a href="https://github.com/gpnaslund">github.com/gpnaslund</a></p>
     </div>
   </div>

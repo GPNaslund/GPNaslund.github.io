@@ -1,12 +1,12 @@
 #mainContainer {
   margin-top: 2rem;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid light-dark(black, white);
   padding-bottom: 2rem;
 }
 
 #description {
   padding: 1.5rem;
-  border-left: 1px solid white;
+  border-left: 1px solid light-dark(black, white);
 }
 
 #profilePicture {
@@ -19,3 +19,14 @@
   justify-content: center;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  #profilePicture {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1027px) and (max-width: 1279px) {
+  #profilePicture {
+    width: 35%;
+  }
+}
